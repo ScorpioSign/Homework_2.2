@@ -11,15 +11,21 @@ public class Task5 {
 
     public static void main(String[] args) {
 
-        ternaryOperator(-5);
-
-    }
-
-    public static void ternaryOperator(int number) {
 
         Predicate<Integer> isEven = n -> (n % 2 == 0);
         Function<Integer, String> ifEven = n -> "число четное";
         Function<Integer, String> ifOdd = n -> "число нечетное";
-        System.out.println(isEven.test(number) ? ifEven.apply(number) : ifOdd.apply(number));
+        Function<Integer, String> checkNumber = ternaryOperator(isEven, ifEven, ifOdd);
+        System.out.println(checkNumber);
+
+    }
+
+    public static Function<Integer, String> ternaryOperator(Predicate<Integer> isEven,
+                                                            Function<Integer, String> ifEven,
+                                                            Function<Integer, String> ifOdd) {
+
+
+        return n -> isEven.test(n) ? ifEven.apply(n) : ifOdd.apply(n);
+
     }
 }
